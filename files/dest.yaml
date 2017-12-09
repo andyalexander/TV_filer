@@ -1,0 +1,6 @@
+type: TV Shows
+name: Beck
+dest: TV Shows/Beck (1997)
+series: 3
+episode_offset: 0
+force_match: 1
