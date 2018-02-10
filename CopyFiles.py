@@ -12,7 +12,7 @@ localPathRoot = "/Users/Andrew/Movies/TV Shows/"
 remotePathRoot = "/Volumes/videos/"
 validExtension = "mp4"
 destFile = 'dest.yaml'
-
+ 
 SERIES = series_handler.series_handler()
 
 def parseFile(fileName, y):
@@ -66,9 +66,16 @@ def parseFile(fileName, y):
                 id = 0
 
             s_id, e_id = SERIES.lookup_episode(y['name'], ep_name, id=id)
+
+            # If we want to skip any lookup and just use the regex
+            if yaml_get(y,'skip_match') == 1:
+                logging.info("  - Skipping lookup match, using regex match")
+                s_id = None
+                e_id = None
+
             if s_id == "error":
                 # If we force a match to the API handler then just return as we can't complete
-                if int(yaml_get(y, 'force_match')) == 1:
+                if yaml_get(y, 'force_match') == 1:
                     logging.info(" - Skipping file as no API match")
                     return (None,None)
                 s_id = None

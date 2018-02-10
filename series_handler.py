@@ -3,7 +3,7 @@ import Levenshtein
 import logging
 import configparser
 
-MATCH_TOLERANCE = 2     # number of characters to allow
+MATCH_TOLERANCE = 3     # number of characters to allow
 CONFIG_NAME = 'default.config'
 
 class series_handler():
@@ -23,6 +23,9 @@ class series_handler():
         :param episodeName: episide name
         :return: series_id and episode_id as strings
         """
+
+        seriesName = seriesName.strip()
+        episodeName = episodeName.strip()
 
         if seriesName is None or episodeName is None:
             return (None,None)
@@ -51,6 +54,9 @@ class series_handler():
 
         episodes = show.Episodes.all()
         logging.info("  - Found {} episodes".format(len(episodes)))
+        if (len(episodes)==0):
+            return ("error", "no episodes found")
+
         if episodes == []:
             return (None, None)
 
