@@ -22,13 +22,19 @@ def parseFile(fileName, y):
     :param y: yaml file
     :return: tuple of (series,episode) and the filename to rename to
     '''
+
+    # regex must pos0 = seriesID, pos1=episodeID, pos2=episodeName
+    # if not found, return empty group
+
     s= []
+    s.append("(?:.*)s([0-9]+)e([0-9]+)\.(.*)\.")
     s.append("Series ([0-9]+) - ([0-9]+)\.?(.*)(?:\(\()")
     s.append("Series ([0-9]+) - Episode ([0-9]+)()")
     s.append("Series ([0-9]+)\s+Episode ([0-9]+)()")
     s.append("- Episode ()([0-9]+) - (.+)(\.mp4)")
     s.append("- Episode ()([0-9]+)()")
     s.append("- ()([0-9]+)\.?(.+)\(\(")
+    s.append("- ()()(.+)\.?(.+)\(\(")
 
     ret = []
 

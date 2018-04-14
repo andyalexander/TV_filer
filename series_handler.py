@@ -24,7 +24,6 @@ class series_handler():
         :return: series_id and episode_id as strings
         """
 
-        seriesName = seriesName.strip()
         episodeName = episodeName.strip()
 
         if seriesName is None or episodeName is None:
