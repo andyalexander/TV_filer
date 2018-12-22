@@ -44,8 +44,11 @@ def parseFile(fileName, y):
     # Format of regex groups:  0=seriesID  1=episodeID  3=episode name
 
     for q in s:
+        tmp = fileName.replace('!','')
+        tmp = tmp.replace("'","")
+
         r = re.compile(q,re.IGNORECASE)
-        res = r.search(fileName)
+        res = r.search(tmp)
 
         if res != None:
             if res.lastindex == 1:
