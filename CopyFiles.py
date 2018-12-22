@@ -35,8 +35,13 @@ def parseFile(fileName, y):
     s.append("- Episode ()([0-9]+)()")
     s.append("- ()([0-9]+)\.?(.+)\(\(")
     s.append("- ()()(.+)\.?(.+)\(\(")
+    s.append("()()(.+)\s*-\s*\(\(")
 
     ret = []
+
+    # fileName = fileName.replace(' ((hvfhd))','')
+
+    # Format of regex groups:  0=seriesID  1=episodeID  3=episode name
 
     for q in s:
         r = re.compile(q,re.IGNORECASE)
